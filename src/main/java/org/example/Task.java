@@ -7,6 +7,14 @@ public class Task {
     private int priority; // 1 - niski, 2 - średni, 3 - wysoki
     private boolean completed;
 
+    public Task(int id, String description, String dueDate, int priority) {
+        this.id = id;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.completed = false;
+    }
+
     public Task(int id, String description, String dueDate, int priority, boolean completed) {
         this.id = id;
         this.description = description;
@@ -47,6 +55,15 @@ public class Task {
         this.priority = priority;
     }
 
+    private String priorityToString() {
+        return switch (priority) {
+            case 1 -> "niski";
+            case 2 -> "średni";
+            case 3 -> "wysoki";
+            default -> "nieznany";
+        };
+    }
+
     public boolean isCompleted() {
         return completed;
     }
@@ -57,6 +74,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return id +  ";" + description +  ";" + dueDate +  ";" + priority +  ";" + completed;
+        return id +  ";" + description +  ";" + dueDate +  ";" + priorityToString() +  ";" + completed;
     }
 }
